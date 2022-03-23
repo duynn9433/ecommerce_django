@@ -1,0 +1,37 @@
+{% extends 'base_bt2.html' %}
+{% block content %}
+    <h1>Mobile</h1>
+
+    <div class="row mt-4">
+        <div class="col">
+            <table class="table table-striped" cellspacing="5" cellpadding="5" border="1">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Display</th>
+                    <th>Platform</th>
+                    <th>Memory</th>
+                    <th>Producer</th>
+                </tr>
+                </thead>
+                </tr>
+            {% load custom_tags %}
+                {% for i in mobiles %}
+                    <tr valign="top">
+                        <td><a href={{ links|list_index:forloop.counter0 }}>{{ i.name }}</a></td>
+                        <td>{{ i.display }}</td>
+                        <td>{{ i.platform }}</td>
+                        <td> {{ memories|list_index:forloop.counter0 }} </td>
+                        <td>{{ i.producer.name}}, {{i.producer.address }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div>
+        <form action="add/">
+            <input type="submit" value="Thêm"/>
+        </form>
+    </div>
+
+{% endblock %}

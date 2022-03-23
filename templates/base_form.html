@@ -1,0 +1,11 @@
+{% extends 'base_bt2.html' %}
+{% block content %}
+    <form action="" method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <table>
+            {{ form }}
+        </table>
+        <input type="hidden" name="home" value="{{ request.path }}">
+        <input type="submit" value="Submit"/>
+    </form>
+{% endblock %}

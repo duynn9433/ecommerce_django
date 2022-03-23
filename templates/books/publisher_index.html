@@ -1,0 +1,32 @@
+{% extends 'base_bt2.html' %}
+{% load custom_tags %}
+{% block content %}
+    <h1>Publisher</h1>
+
+    <div class="row mt-4">
+        <div class="col">
+            <table class="table table-striped" cellspacing="5" cellpadding="5" border="1">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                </tr>
+                </thead>
+                </tr>
+                {% for i in pubs %}
+                    <tr valign="top">
+{#                        <td><a href={% list_index links forloop.counter0 %}>{{ i.name }}</a></td>#}
+                        <td><a href={{ links|list_index:forloop.counter0 }} >{{ i.name }}</a></td>
+                        <td>{{ i.country }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div>
+        <form action="add/">
+            <input type="submit" value="Thêm tác giả"/>
+        </form>
+    </div>
+
+{% endblock %}

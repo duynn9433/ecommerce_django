@@ -1,0 +1,35 @@
+{% extends 'base_bt2.html' %}
+{% block content %}
+    <h1>Size</h1>
+
+    <div class="row mt-4">
+        <div class="col">
+            <table class="table table-striped" cellspacing="5" cellpadding="5" border="1">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Width</th>
+                    <th>Height</th>
+                    <th>Deep</th>
+                    <th>Weight</th>
+                </tr>
+                </thead>
+                </tr>
+            {% load custom_tags %}
+                {% for i in list %}
+                    <tr valign="top">
+                        <td><a href={{ links|list_index:forloop.counter0}}>{{ i.width }}</a></td>
+                        <td>{{ i.height }}</td>
+                        <td>{{ i.deep }}</td>
+                        <td>{{ i.weight }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div>
+        <form action="add/">
+            <input type="submit" value="Thêm"/>
+        </form>
+    </div>
+
+{% endblock %}

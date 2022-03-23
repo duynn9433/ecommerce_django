@@ -1,0 +1,39 @@
+{% extends 'base_bt2.html' %}
+{% block content %}
+    <h1>CPU</h1>
+
+    <div class="row mt-4">
+        <div class="col">
+            <table class="table table-striped" cellspacing="5" cellpadding="5" border="1">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Model</th>
+                    <th>Family</th>
+                    <th>Core</th>
+                    <th>Frequency</th>
+                    <th>Thread</th>
+                    <th>Brand</th>
+                </tr>
+                </thead>
+                </tr>
+            {% load custom_tags %}
+                {% for i in list %}
+                    <tr valign="top">
+                        <td><a href={{ links|list_index:forloop.counter0}}>{{ i.model }}</a></td>
+                        <td>{{ i.family }}</td>
+                        <td>{{ i.core }}</td>
+                        <td>{{ i.frequency }}</td>
+                        <td>{{ i.thread }}</td>
+                        <td>{{ i.brand }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div>
+        <form action="add/">
+            <input type="submit" value="Thêm"/>
+        </form>
+    </div>
+
+{% endblock %}

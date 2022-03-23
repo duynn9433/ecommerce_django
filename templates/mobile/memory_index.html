@@ -1,0 +1,33 @@
+{% extends 'base_bt2.html' %}
+{% block content %}
+    <h1>Memory</h1>
+
+    <div class="row mt-4">
+        <div class="col">
+            <table class="table table-striped" cellspacing="5" cellpadding="5" border="1">
+                <thead class="thead-dark">
+                <tr>
+                    <th>RAM</th>
+                    <th>ROM</th>
+                    <th>Card Slot</th>
+                </tr>
+                </thead>
+                </tr>
+            {% load custom_tags %}
+                {% for i in memories %}
+                    <tr valign="top">
+                        <td><a href={{ links|list_index:forloop.counter0 }}>{{ i.ram }}</a></td>
+                        <td>{{ i.rom }}</td>
+                        <td>{{ i.cardSlot }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div>
+        <form action="add/">
+            <input type="submit" value="Thêm"/>
+        </form>
+    </div>
+
+{% endblock %}
