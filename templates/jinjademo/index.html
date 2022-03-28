@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_old.html' %}
 {% block title %}Jinja demo{% endblock %}
 {#1 reusable template#}
 {% block body %}
@@ -9,7 +9,7 @@
 
 <h1>Macro----------------------------------------------------------------</h1>
     {#3. macro #}
-    {% import 'base.html' as base %}
+    {% import 'base_old.html' as base %}
     {{ base.coffeestore('Downtown',1,'Horton Plaza','San Diego','CA','downtown@coffeehouse.com') }}
 
 <h1>Macro call----------------------------------------------------------------</h1>

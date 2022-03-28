@@ -15,7 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = Path(__file__).resolve().parent
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -40,7 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'django_extensions',
     'manager_shop',
+    # 'djangodblog',
+    'catalog',
+    'utils',
+
+    'django.contrib.sites',
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    # 'djangodblog.DBLogMiddleware',
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -66,8 +72,17 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # 'django.core.context_processors.auth',
+                # 'django.core.context_processors.debug',
+                # 'django.core.context_processors.i18n',
+                # 'django.core.context_processors.media',
+
+                'utils.context_processors.ecomstore',
             ],
             'libraries': {
                 'custom_tags': 'manager_shop.templatetags.custom_tags',
@@ -83,23 +98,23 @@ WSGI_APPLICATION = 'ecommerce_django.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'bt2_ads',
-    #     'USER': 'root',
-    #     'PASSWORD': 'root',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306',
-    #     'OPTION': {
-    #         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-    #         # which is used to handle the invalid or missing values from
-    #         # being stored in the database by INSERT and UPDATE statements.
-    #     }
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bt2_ads',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTION': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            # which is used to handle the invalid or missing values from
+            # being stored in the database by INSERT and UPDATE statements.
+        }
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
@@ -137,9 +152,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR/'media'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+SITE_NAME = 'Modern Musician'
+META_KEYWORDS = 'Music, instruments, music accessories, musician supplies'
+META_DESCRIPTION = 'Modern Musician is an online supplier of instruments, sheet music, and other accessories for musicians'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

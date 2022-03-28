@@ -1,10 +1,10 @@
-{% extends "jinjademo/base.html" %}
+{% extends "jinjademo/base_old.html" %}
 {% block body %}
     <h1>Call super </h1>
     {#2 call super #}
     {% block breadcrumb %} {{super()}} : Detail {% endblock %}
     <h1>Macro --------------------------------- </h1>
     {#3. macro #}
-    {% import 'base.html' as base %}
+    {% import 'base_old.html' as base %}
     {{base.coffeestore('Downtown',1,'Horton Plaza','San Diego','CA','downtown@coffeehouse.com')}}
 {% endblock body %}
