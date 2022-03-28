@@ -7,7 +7,7 @@
 	{% for p in products %}
 	<div class="product_thumbnail">
 		<a href="{{ p.get_absolute_url }}">
-		<img src="{{ STATIC_URL }}{{ p.image }}" alt="{{ p.name }}" class="bn" />
+{#		<img src="{{ STATIC_URL }}{{ p.image }}" alt="{{ p.name }}" class="bn" />#}
             <img src="{{ p.image.url }}" alt="{{ p.name }}" class="bn" />
 		<br />
 		{{ p.name }}

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # 'djangodblog',
     'catalog',
     'utils',
+    'cart',
 
     'django.contrib.sites',
 ]
@@ -50,12 +51,14 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # session_middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     # 'djangodblog.DBLogMiddleware',
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
@@ -169,19 +172,28 @@ META_DESCRIPTION = 'Modern Musician is an online supplier of instruments, sheet 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
+# import sentry_sdk
+# from sentry_sdk.integrations.django import DjangoIntegration
 
-sentry_sdk.init(
-    dsn="https://10411067b6b8415186d226e13dc30a4f@o1163758.ingest.sentry.io/6252171",
-    integrations=[DjangoIntegration()],
+# sentry_sdk.init(
+#     dsn="https://10411067b6b8415186d226e13dc30a4f@o1163758.ingest.sentry.io/6252171",
+#     integrations=[DjangoIntegration()],
+#
+#     # Set traces_sample_rate to 1.0 to capture 100%
+#     # of transactions for performance monitoring.
+#     # We recommend adjusting this value in production.
+#     traces_sample_rate=1.0,
+#
+#     # If you wish to associate users to errors (assuming you are using
+#     # django.contrib.auth) you may enable sending PII data.
+#     send_default_pii=True
+# )
 
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=1.0,
-
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)
+# cookie settings
+SESSION_COOKIE_NAME = 'sessionid'
+# module to sotre session data
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+# age of cookie (2weeks)
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_SECURE = False

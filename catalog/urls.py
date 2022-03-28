@@ -1,4 +1,3 @@
-import patterns as patterns
 from django.urls import re_path, path
 
 import catalog
@@ -18,7 +17,8 @@ import catalog
 # )
 from catalog import views
 
-urlpatterns =[
+urlpatterns = [
+
     path('', views.index, name='catalog_home'),
     # re_path(r'^category/(?P<category_slug>[-\w]+)/$',
     #         views.show_category({'template_name': 'catalog/category.html'}), name='catalog_category'),
