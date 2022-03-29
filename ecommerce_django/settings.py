@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # dung cho footer header
+    'django.contrib.flatpages',
     # 'django_extensions',
     'manager_shop',
     # 'djangodblog',
@@ -58,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # dung cho footer header
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 
     # 'djangodblog.DBLogMiddleware',
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
