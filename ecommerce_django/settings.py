@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'catalog',
     'utils',
     'cart',
+    'checkout',
 
     'django.contrib.sites',
 ]

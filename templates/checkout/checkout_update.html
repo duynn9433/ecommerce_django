@@ -184,7 +184,8 @@
 
         function submitFormData(transactionId) {
             console.log('Payment button clicked')
-            var ip = "<?php echo $_SERVER['SERVER_ADDR']; ?>";
+            {#var ip = "<?php echo $_SERVER['SERVER_ADDR']; ?>";#}
+            var ip = '192.168.0.1';
             var order = {
                 'ip': ip,
                 'transaction_id': transactionId,
@@ -223,7 +224,7 @@
                 .then((response) => response.json())
                 .then((data) => {
                     console.log('Success:', data);
-                    {#alert('Transaction completed');#}
+                    alert('Transaction completed');
 
                     {#cart = {}#}
                     {#document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"#}
