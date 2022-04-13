@@ -75,6 +75,11 @@ def create_order(request, transaction_id):
 
     """
     order = Order()
+    # save the user
+    order.user = None
+    if request.user.is_authenticated():
+        order.user = request.user
+    # order information
     checkout_form = CheckoutForm(request.POST, instance=order)
     order = checkout_form.save(commit=False)
 
@@ -86,6 +91,7 @@ def create_order(request, transaction_id):
     order.status = Order.SUBMITTED
     order.save()
 
+    # save the order items
     if order.pk:
         """ if the order save succeeded """
         cart_items = cart.get_cart_items(request)
@@ -101,7 +107,7 @@ def create_order(request, transaction_id):
         cart.empty_cart(request)
 
         # save profile info for future orders
-        # if request.user.is_authenticated():
-        #     profile.set(request)
+        if request.user.is_authenticated():
+            profile.set(request)
 
     return order

@@ -6,9 +6,9 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from cart import cart
-from checkout import checkout
 from checkout.forms import CheckoutForm
 from checkout.models import Order, OrderItem
+from accounts import profile
 
 
 def index(request):
@@ -44,11 +44,11 @@ def show_checkout(request):
         else:
             error_message = u'Correct the errors below'
     else:
-        # if request.user.is_authenticated():
-        #     user_profile = profile.retrieve(request)
-        #     form = CheckoutForm(instance=user_profile)
-        # else:
-        form = CheckoutForm()
+        if request.user.is_authenticated():
+            user_profile = profile.retrieve(request)
+            form = CheckoutForm(instance=user_profile)
+        else:
+            form = CheckoutForm()
     page_title = 'Checkout'
     return render(request, template_name, locals())
 

@@ -126,6 +126,11 @@ def empty_cart(request):
     """ empties the shopping cart of the current customer """
     user_cart = get_cart_items(request)
     user_cart.delete()
+    # save profile info for future orders
+    if request.user.is_authenticated():
+        from accounts import profile
+        profile.set(request)
+    # return the new order object
 
 
 def remove_old_cart_items():

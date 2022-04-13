@@ -47,10 +47,17 @@ INSTALLED_APPS = [
     'utils',
     'cart',
     'checkout',
+    'accounts',
 
     'django.contrib.sites',
 ]
 SITE_ID = 1
+
+ENABLE_SSL = False
+
+LOGIN_REDIRECT_URL = '/accounts/my_account/'
+
+AUTH_PROFILE_MODULE = 'accounts.userprofile'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

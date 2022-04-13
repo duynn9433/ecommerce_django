@@ -4,13 +4,13 @@
 {% load catalog_filters %}
 
 {% block content %}
-    {#{% if not request.user.is_authenticated %}#}
-    {#<div class="fr">#}
-    {#	<a href="{% url login %}?next={{ request.path }}">#}
-    {#	Have an account?<br />Sign in now!#}
-    {#	</a>#}
-    {#</div>#}
-    {#{% endif %}#}
+    {% if not request.user.is_authenticated %}
+    <div class="fr">
+    	<a href="{% url 'login' %}?next={{ request.path }}">
+    	Have an account?<br />Sign in now!
+    	</a>
+    </div>
+    {% endif %}
     <div class="row">
         <div class="col-lg-6">
             <fieldset class="checkout">
